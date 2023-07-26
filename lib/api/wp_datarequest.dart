@@ -118,14 +118,6 @@ class WPDataRequest {
     Map<String, List<Post>> mappedPosts =
         groupBy(allPosts, (post) => '${post.categories[0]}');
 
-    // mappedPosts.forEach((categoria, posts) {
-    //   debugPrint('Categoria: $categoria');
-    //   for (Post post in posts) {
-    //     debugPrint(' - ${post.title.rendered}');
-    //   }
-    //   debugPrint('');
-    // });
-
     return mappedPosts;
   }
 
@@ -135,9 +127,6 @@ class WPDataRequest {
     List<String> allPostsLinks = [];
 
     for (int page = 1; page <= numberOfPages; page++) {
-      // http.Response response =
-      //     await http.get(Uri.parse('${_apiLink!}?page=$page'));
-
       http.Response response =
           await http.get(Uri.parse('${_apiLink!}?per_page=15'));
 
@@ -174,7 +163,6 @@ class WPDataRequest {
           imageLink = null;
         }
       }
-      //debugPrint('\n$imageLink');
     } catch (e) {
       debugPrint('Cath an error in WPDataRequest - getPostImage:');
       debugPrint(e.toString());

@@ -27,7 +27,6 @@ class PostViewModel extends StatefulWidget {
 }
 
 class _PostViewModelState extends State<PostViewModel> {
-  // final myRequest = WPDataRequest(site: 'https://www.guiadoscuriosos.com.br');
   final myRequest = WPDataRequest(site: 'https://www.emporiodomus.com.br');
 
   @override
@@ -44,24 +43,25 @@ class _PostViewModelState extends State<PostViewModel> {
       );
     }
 
-    String pickContent(List<String> body) {
-      String content = '';
-
-      // for (String palavra in body) {
-      //   if (palavra.length > content.length) {
-      //     content = palavra;
-      //   }
-      // }
-
-      content = body[0];
-
-      return content;
-    }
-
     List<String> body = widget.post.content.rendered.split('api.whatsapp');
-    String? content = pickContent(body);
+    body = widget.post.content.rendered.split('instagram-media');
+    String? content = body[0];
 
-    // content = widget.post.content.rendered;
+    List elements = parse(
+      content,
+      generateSpans: true,
+    ).body!.children;
+
+    String textoFinal = '';
+
+    for (var element in elements) {
+      String texto = element.text;
+      if (texto.isNotEmpty) {
+        //print(texto);
+        texto = texto.replaceAll('\n\n', '');
+        textoFinal += '\n\n$texto';
+      }
+    }
 
     return Scaffold(
       appBar: AppBar(
@@ -127,8 +127,13 @@ class _PostViewModelState extends State<PostViewModel> {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 50),
-              child: Text(
-                parse(content).body!.text,
+              child: SelectableText(
+                textoFinal,
+                // conteudo.toString(),
+                // parse(
+                //   content,
+                //   generateSpans: true,
+                // ).body!.text,
               ),
             ),
             Padding(

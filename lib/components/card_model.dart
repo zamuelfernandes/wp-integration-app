@@ -17,7 +17,6 @@ class CardModel extends StatefulWidget {
 }
 
 class _CardModelState extends State<CardModel> {
-  // final myRequest = WPDataRequest(site: 'https://www.guiadoscuriosos.com.br');
   final myRequest = WPDataRequest(site: 'https://www.emporiodomus.com.br');
   String? networkBackgroundImage;
   String? categoryName;
