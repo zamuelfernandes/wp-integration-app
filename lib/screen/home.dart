@@ -77,11 +77,11 @@ class _MyHomePageState extends State<MyHomePage> {
         centerTitle: true,
       ),
       body: Center(
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              ListView.builder(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Expanded(
+              child: ListView.builder(
                 shrinkWrap: true,
                 itemCount: cardsList.length,
                 itemBuilder: (context, index) {
@@ -101,8 +101,8 @@ class _MyHomePageState extends State<MyHomePage> {
                   );
                 },
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

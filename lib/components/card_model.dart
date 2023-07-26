@@ -52,9 +52,8 @@ class _CardModelState extends State<CardModel> {
 
     networkBackgroundImage = await myRequest.getPostImage(widget.post);
 
-    setState(() {
-      debugPrint(networkBackgroundImage);
-    });
+    //ARRUMAR AQUI
+    setState(() {});
   }
 
   @override
